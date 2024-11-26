@@ -1,0 +1,124 @@
+<html>
+
+<head>
+
+    <title> Digital Clock</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            flex-direction: column;
+            background-color: cyan;
+        }
+
+        #clock h2 {
+            font-size: 5rem;
+            margin: 2rem;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+            animation: colorchange 5s ease infinite;
+        }
+
+        @keyframes colorchange {
+            0% {
+                color: orangered;
+            }
+
+            25% {
+                color: gold;
+            }
+
+            50% {
+                color: cyan;
+            }
+
+            75% {
+                color: lightblue;
+            }
+
+            100% {
+                color: cyan;
+            }
+        }
+
+        #time {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        #time div {
+            background-color: blueviolet;
+            font-size: 3rem;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid blueviolet;
+            padding: 2rem;
+            border-radius: 10px;
+            color: #fff;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
+        }
+        #time #sec{
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="clock">
+        <h2>The time is now</h2>
+        <div id="time">
+            <div><span id="hour"></span><span>Hours</span></div>
+            <div><span id="minutes"></span><span>Minutes</span></div>
+            <div id="sec"><span id="seconds"></span><span>Seconds</span></div>
+            <div><span id="ampm"></span></div>
+        </div>
+    </div>
+    <script>
+        function clock() {
+
+            var hours = document.getElementById('hour');
+            var minutes = document.getElementById('minutes');
+            var seconds = document.getElementById('seconds');
+            var ampm = document.getElementById('ampm');
+
+            var h = new Date().getHours();
+            var m = new Date().getMinutes();
+            var s = new Date().getSeconds();
+            var am = "AM";
+
+            if (h > 12) {
+                h = h - 12;
+                var am = "PM"
+            }
+
+            h
+            h = (h < 10) ? "0" + h : h
+            m = (m < 10) ? "0" + m : m
+            s = (s < 10) ? "0" + s : s
+
+
+            hours.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+            ampm.innerHTML = am
+
+        }
+
+        var interval = setInterval(clock, 1000);
+        clock();
+
+    </script>
+</body>
+
+</html>
